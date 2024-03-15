@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Password manager</string>
+    <string name="password_placeholder">••••••••</string>
+    <string name="welcome_first_password">Welcome! Enter your new master password.</string>
+    <string name="welcome_second_password">Welcome! Enter your master password.</string>
+    <string name="set_password">Set password</string>
+    <string name="unlock">Unlock</string>
+    <string name="btn_save">Save</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_sitename">Sitename</string>
+    <string name="hint_url">URL</string>
+    <string name="visible_icon">visible icon</string>
+    <string name="all_sites_title">Все записи сайтов</string>
+    <string name="button_add_new_site">button add new site</string>
+    <string name="hint_confirm_master_password">Confirm master password</string>
+    <string name="icon_password_manager">icon password manager</string>
+    <string name="hint_enter_master_password">Enter master password</string>
+    <string name="arrow_right">arrow right</string>
+    <string name="site_name">Site Name</string>
+    <string name="site_url">www.example.com</string>
+    <string name="site_icon">site icon</string>
+    <string name="btn_more">more</string>
+    <string name="login">Login</string>
+    <string name="site_login">nuser@example.com</string>
+    <string name="password_title">Password</string>
+    <string name="hidden_password">••••••••</string>
+    <string name="show_password">show password</string>
+    <string name="edit">Изменить</string>
+    <string name="delete">Удалить</string>
+    <string name="btn_login_with_biometric">Login with biometric</string>
+
+</resources>
