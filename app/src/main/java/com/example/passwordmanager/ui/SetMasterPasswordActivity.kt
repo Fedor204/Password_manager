@@ -11,10 +11,10 @@ import android.widget.Toast
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import com.example.passwordmanager.utils.EncryptUtils
 import com.example.passwordmanager.R
-import com.example.passwordmanager.utils.SharedPreferencesManager
+import com.example.passwordmanager.data.AppDatabase
 import com.example.passwordmanager.databinding.ActivitySetMasterPasswordBinding
+import com.example.passwordmanager.utils.KeystoreManager
 
 class SetMasterPasswordActivity : AppCompatActivity() {
 
@@ -25,7 +25,8 @@ class SetMasterPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (SharedPreferencesManager(this).hasMasterPassword()) {
+
+        if (KeystoreManager(this).getMasterPassword() != null) {
             setupForPasswordCheck()
             checkBiometricSupport()
         } else {
@@ -89,9 +90,7 @@ class SetMasterPasswordActivity : AppCompatActivity() {
             val confirmMasterPassword = binding.editTextConfirmMasterPassword.text.toString()
 
             if (masterPassword == confirmMasterPassword && masterPassword.isNotEmpty()) {
-                val encryptUtils = EncryptUtils()
-                val encryptedData = encryptUtils.encryptText(masterPassword)
-                SharedPreferencesManager(this).saveMasterPassword(encryptedData)
+                KeystoreManager(this).saveMasterPassword(masterPassword)
                 launchMainActivity()
             } else {
                 Toast.makeText(this, "The passwords do not match or are empty", Toast.LENGTH_SHORT).show()
@@ -100,20 +99,13 @@ class SetMasterPasswordActivity : AppCompatActivity() {
     }
 
     private fun validateMasterPassword(enteredPassword: String) {
-        val sharedPreferencesManager = SharedPreferencesManager(this)
-        val encryptedData = sharedPreferencesManager.getMasterPassword()
-
-        if (encryptedData != null) {
-            val encryptUtils = EncryptUtils()
-            val decryptedPassword = encryptUtils.decryptData(encryptedData)
-
-            if (enteredPassword == decryptedPassword) {
-                Toast.makeText(this, "Access Granted", Toast.LENGTH_SHORT).show()
-                launchMainActivity()
-            } else {
-                Toast.makeText(this, "Incorrect Master Password", Toast.LENGTH_SHORT).show()
-                binding.editTextMasterPassword.text.clear()
-            }
+        val storedPassword = KeystoreManager(this).getMasterPassword()
+        if (enteredPassword == storedPassword) {
+            Toast.makeText(this, "Access Granted", Toast.LENGTH_SHORT).show()
+            launchMainActivity()
+        } else {
+            Toast.makeText(this, "Incorrect Master Password", Toast.LENGTH_SHORT).show()
+            binding.editTextMasterPassword.text.clear()
         }
     }
 

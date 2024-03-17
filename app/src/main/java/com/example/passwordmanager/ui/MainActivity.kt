@@ -7,6 +7,7 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.passwordmanager.R
+import com.example.passwordmanager.data.AppDatabase
 import com.example.passwordmanager.viewmodel.SiteViewModel
 import com.example.passwordmanager.data.Site
 import com.example.passwordmanager.databinding.ActivityMainBinding
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
 
         siteViewModel = ViewModelProvider(this)[SiteViewModel::class.java]
 

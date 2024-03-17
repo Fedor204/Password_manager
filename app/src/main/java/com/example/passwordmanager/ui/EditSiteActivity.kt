@@ -100,8 +100,9 @@ class EditSiteActivity : AppCompatActivity() {
                 siteName = siteName,
                 _url = url,
                 username = username,
-                password = Base64.encodeToString(encryptedData.encryptedText, Base64.DEFAULT),
-                iv = Base64.encodeToString(encryptedData.iv, Base64.DEFAULT)
+                password = Base64.encodeToString(encryptedData?.encryptedText ?: ByteArray(0), Base64.DEFAULT),
+                iv = Base64.encodeToString(encryptedData?.iv ?: ByteArray(0), Base64.DEFAULT)
+
             )
             if (currentSiteId == 0) {
                 siteViewModel.insert(site)

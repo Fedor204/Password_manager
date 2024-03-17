@@ -11,13 +11,13 @@ import kotlinx.coroutines.launch
 
 class SiteViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: SiteRepository
-
     val allSites: LiveData<List<Site>>
 
     init {
         val siteDao = AppDatabase.getDatabase(application).siteDao()
         repository = SiteRepository(siteDao)
         allSites = repository.allSites
+
     }
 
     fun insert(site: Site) = viewModelScope.launch {
